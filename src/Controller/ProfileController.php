@@ -32,7 +32,7 @@ class ProfileController extends AbstractController {
         $languages = $em->getRepository(LanguageUser::class)->findBy(['user' => $this->getUser()]);
 
         //calculate age of user
-        $age = date_diff(date_create($user->getBirthdate()->format('Y-m-d H:i:s')), date_create('now'))->y;
+        $age = $user->getBirthdate() != null ? date_diff(date_create($user->getBirthdate()->format('Y-m-d H:i:s')), date_create('now'))->y : null;
 
         return $this->render('profile/index.html.twig', [
             'user' => $user,
