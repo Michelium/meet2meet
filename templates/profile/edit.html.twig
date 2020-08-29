@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile edit{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="card w-75 m-auto">
+            <div class="row">
+                <div class="col-12">
+                    <h4>Edit profile</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    {{ form_start(form) }}
+                    {{ form_row(form.status) }}
+                    <div class="row">
+                        <div class="col-lg-5 col-sm-12">
+                            <label class="" for="profile_birthdate">Birthdate</label>
+                            {{ form_row(form.birthdate) }}
+                        </div>
+                        <div class="col-lg-7 col-sm-12">
+                            {{ form_row(form.gender) }}
+                        </div>
+                    </div>
+                    <label class="" for="profile_avatarfile">Profile picture (<span class="small text-muted"><i class="fas fa-exclamation-triangle"></i> Recommended size: 150x150 px</span>)</label>
+                    {{ form_row(form.avatarFile) }}
+
+
+                    {{ form_widget(form) }}
+                    <button type="submit" class="btn btn-secondary"><i class="fas fa-save"></i>&nbsp;Save</button>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

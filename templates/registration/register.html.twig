@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <div class="card">
+        <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+        <p>Fill in the form below and register a FREE account on Meet2Meet!</p>
+
+        {{ form_start(registrationForm, {'attr': {'novalidate': 'novalidate'}}) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword) }}
+        {{ form_row(registrationForm.displayname) }}
+
+        <div class="row">
+            <div class="col-sm-12 col-lg-6">
+                {{ form_row(registrationForm.firstname) }}
+            </div>
+            <div class="col-sm-12 col-lg-6">
+                {{ form_row(registrationForm.lastname) }}
+            </div>
+        </div>
+
+        <p class="small">You can add additional info to your account once you're logged on!</p>
+        <button class="btn btn-primary">Register</button>
+        {{ form_end(registrationForm) }}
+    </div>
+{% endblock %}

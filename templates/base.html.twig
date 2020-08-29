@@ -1,12 +1,90 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Meet2Meet | {% block title %}Welcome!{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+    <script src="https://kit.fontawesome.com/76f07844c9.js"></script>
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+
+<div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary mb-5">
+    <div class="container">
+        <a href="{{ path('index') }}" class="navbar-brand">Meet2Meet</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav">
+                {# <li class="nav-item dropdown"> #}
+                {# <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Themes <span class="caret"></span></a> #}
+                {# <div class="dropdown-menu" aria-labelledby="themes"> #}
+                {# <a class="dropdown-item" href="../default/">Default</a> #}
+                {# <div class="dropdown-divider"></div> #}
+                {# <a class="dropdown-item" href="../cerulean/">Cerulean</a> #}
+                {# <a class="dropdown-item" href="../cosmo/">Cosmo</a> #}
+                {# <a class="dropdown-item" href="../united/">United</a> #}
+                {# <a class="dropdown-item" href="../yeti/">Yeti</a> #}
+                {# </div> #}
+                {# </li> #}
+                <li class="nav-item">
+                    <a class="nav-link" href="../help/">Help</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://blog.bootswatch.com">About</a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav ml-auto">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <a href="{{ path('profile') }}"><span class="navbar-text">Hi, {{ app.user.displayname }}!</span></a>
+                    <li class="nav-item ml-2">
+                        <a class="btn btn-secondary text-white btn-sm nav-link" href="{{ path('logout') }}">Log out</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item {% if app.request.get('_route') == 'register' %} active{% endif %}">
+                        <a class="nav-link" href="{{ path('register') }}">Register</a>
+                    </li>
+                    <li class="nav-item {% if app.request.get('_route') == 'login' %} active{% endif %}">
+                        <a class="nav-link" href="{{ path('login') }}">Log in</a>
+                    </li>
+                {% endif %}
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<div class="container mb-5">
+
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }} alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    {% block body %}
+
+    {% endblock %}
+</div>
+
+</body>
+{% block scripts %}
+
+{% endblock %}
 </html>
