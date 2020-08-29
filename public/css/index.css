@@ -1,0 +1,15 @@
+body {
+    background-color: #b1d3d6;
+    padding-top: 100px;
+}
+
+label.required:before {
+    content: " * ";
+    color: #FF7851;
+}
+
+/*CARDS ON PAGES*/
+.card {
+    padding: 10px;
+    background-color: whitesmoke;
+}

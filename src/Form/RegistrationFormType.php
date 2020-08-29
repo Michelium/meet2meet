@@ -48,7 +48,7 @@ class RegistrationFormType extends AbstractType {
                 ],
             ])
             ->add('displayname', TextType::class, [
-                'label' => 'Displayname (This name is so that other users can find you faster, choose wisely!)',
+                'label' => 'Displayname (This name is so that other users can find you faster, choose wisely, this cannot be changed!)',
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a displayname',
