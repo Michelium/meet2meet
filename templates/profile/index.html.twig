@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Profile {{ user.displayname }}{% endblock %}
+{% block title %}{{ user.displayname }} profile{% endblock %}
 
 {% block body %}
     <div class="row">
         <div class="card w-100 m-auto">
             <div class="row">
                 <div class="col-12">
-                    <h4 class="text-secondary float-left">{{ user.displayname }}</h4>
+                    <h5 class="text-secondary float-left">{{ user.displayname }}</h5>
                     <a href="{{ path('profile_edit', { id : user.id }) }}" class="btn btn-sm btn-primary float-right"><i
                                 class="fas fa-cog"></i> Edit profile</a>
                 </div>
@@ -16,16 +16,18 @@
                 <div class="col-sm-12 col-lg-6">
                     <div class="row">
                         <div class="col-12">
-                            <p class="text-muted">{{ user.firstname }} {{ user.lastname }} <span
-                                        class="small">{% if age %}{{ age }} y/o{% endif %}</span></p>
+                            <h2 class="text-muted">{{ user.firstname }} {{ user.lastname }} <span
+                                        class="small">{% if age %}{{ age }} y/o{% endif %}</span></h2>
                         </div>
                     </div>
+                    {% if user.status %}
                     <div class="row">
                         <div class="col-12">
                             <h6 class="text-info font-weight-bolder">Current status</h6>
                             <p>{{ user.status }}</p>
                         </div>
                     </div>
+                    {% endif %}
                     <hr class="w-50 float-left">
                     <br><br>
                     <div class="row">
@@ -56,6 +58,7 @@
                             </p>
                         </div>
                     </div>
+                    {% if user.languages %}
                     <div class="row">
                         <div class="col-12">
                             <p>
@@ -70,6 +73,8 @@
                             </p>
                         </div>
                     </div>
+                    {% endif %}
+                    {% if user.education %}
                     <div class="row">
                         <div class="col-12">
                             <p>
@@ -78,6 +83,7 @@
                             </p>
                         </div>
                     </div>
+                    {% endif %}
                 </div>
                 <div class="col-sm-12 col-lg-6">
                     <div class="row float-right mr-lg-2 mt-lg-2">
@@ -95,36 +101,46 @@
 
             <hr>
 
+            {% if user.about %}
             <div class="row">
                 <div class="col-12">
                     <h6 class="text-info font-weight-bolder">About me:</h6>
                     <p>{{ user.about }}</p>
                 </div>
             </div>
+            {% endif %}
+            {% if user.hobbies %}
             <div class="row">
                 <div class="col-12">
                     <h6 class="text-info font-weight-bolder">Hobbies or other interests:</h6>
                     <p>{{ user.hobbies }}</p>
                 </div>
             </div>
+            {% endif %}
+            {% if user.music %}
             <div class="row">
                 <div class="col-12">
                     <h6 class="text-info font-weight-bolder">Favourite music:</h6>
                     <p>{{ user.music }}</p>
                 </div>
             </div>
+            {% endif %}
+            {% if user.movies %}
             <div class="row">
                 <div class="col-12">
                     <h6 class="text-info font-weight-bolder">Favourite movies:</h6>
                     <p>{{ user.movies }}</p>
                 </div>
             </div>
+            {% endif %}
+            {% if user.books %}
             <div class="row">
                 <div class="col-12">
                     <h6 class="text-info font-weight-bolder">Favourite books:</h6>
                     <p>{{ user.books }}</p>
                 </div>
             </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
